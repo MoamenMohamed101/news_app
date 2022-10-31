@@ -1,4 +1,4 @@
-# news_appmoamen
+# news_app
 
 A new Flutter project.
 
