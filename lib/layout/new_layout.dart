@@ -1,17 +1,40 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/shared/cubit/cubit.dart';
+import 'package:news_app/shared/cubit/states.dart';
 
 class NewsLayout extends StatelessWidget {
-  NewsLayout({Key? key}) : super(key: key);
-  List screens = [];
-  List appBar = [];
+  const NewsLayout({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {}),
-      appBar: AppBar(),
-      //bottomNavigationBar: BottomNavigationBar(items: const []),
+    return BlocProvider(
+      create: (BuildContext context) => NewsCubit()..getBusiness(),
+      child: BlocConsumer<NewsCubit, NewsStates>(
+        builder: (BuildContext context, state) {
+          var cubit = NewsCubit.get(context);
+          return Scaffold(
+            body: cubit.screens[cubit.currentIndex!],
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.search),
+                ),
+              ],
+              title: const Text('News app'),
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              items: cubit.bottomItem,
+              onTap: (index) {
+                cubit.changeBottomNavBar(index);
+              },
+              currentIndex: cubit.currentIndex!,
+            ),
+          );
+        },
+        listener: (BuildContext context, Object? state) {},
+      ),
     );
   }
 }
