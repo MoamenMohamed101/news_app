@@ -41,7 +41,6 @@ class NewsCubit extends Cubit<NewsStates> {
     })!
         .then((value) {
       business = value.data['articles'];
-      print(business[0]['title']);
       emit(NewsGetBusinessSuccessStates());
     }).catchError((error) {
       print(
