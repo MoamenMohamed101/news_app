@@ -10,7 +10,10 @@ buildArticleItem(article) => Padding(
             decoration: BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage('${article['urlToImage']}'),
+                image: article['urlToImage'] == null
+                    ? const NetworkImage(
+                        'https://media.wired.com/photos/5b17381815b2c744cb650b5f/master/pass/GettyImages-134367495.jpg')
+                    : NetworkImage('${article['urlToImage']}'),
               ),
               borderRadius: BorderRadius.circular(10),
             ),
