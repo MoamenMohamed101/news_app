@@ -9,7 +9,10 @@ class NewsLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => NewsCubit()..getBusiness(),
+      create: (BuildContext context) => NewsCubit()
+        ..getBusiness()
+        ..getSports()
+        ..getScience(),
       child: BlocConsumer<NewsCubit, NewsStates>(
         builder: (BuildContext context, state) {
           var cubit = NewsCubit.get(context);
@@ -20,6 +23,10 @@ class NewsLayout extends StatelessWidget {
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.search),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.brightness_4_outlined),
                 ),
               ],
               title: const Text('News app'),

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:news_app/layout/new_layout.dart';
 import 'package:news_app/shared/cubit/bloc_observer.dart';
 import 'package:news_app/shared/network/remote/dio_helper.dart';
@@ -25,12 +26,43 @@ main() {
               statusBarIconBrightness: Brightness.dark),
         ),
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.deepOrange,
-            elevation: 20),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: Colors.deepOrange),
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.deepOrange,
+          elevation: 20,
+          backgroundColor: Colors.white,
+          unselectedItemColor: Colors.grey,
+        ),
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(
+              color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
+        ),
       ),
+      darkTheme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+        scaffoldBackgroundColor: HexColor('333739'),
+        appBarTheme: AppBarTheme(
+          iconTheme: const IconThemeData(color: Colors.white),
+          titleTextStyle: const TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          color: HexColor('333739'),
+          elevation: 0.0,
+          systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: HexColor('333739'),
+              statusBarIconBrightness: Brightness.light),
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.deepOrange,
+          elevation: 20,
+          backgroundColor: HexColor('333739'),
+          unselectedItemColor: Colors.grey,
+        ),
+        textTheme: const TextTheme(
+          bodyText1: TextStyle(
+              color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
+        ),
+      ),
+      themeMode: ThemeMode.light,
       home: const NewsLayout(),
     ),
   );

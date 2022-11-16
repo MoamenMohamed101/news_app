@@ -1,6 +1,7 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 
-buildArticleItem(article) => Padding(
+buildArticleItem(article, context) => Padding(
       padding: const EdgeInsets.all(20.0),
       child: Row(
         children: [
@@ -33,10 +34,7 @@ buildArticleItem(article) => Padding(
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                       '${article['title']}',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
                   Text(
@@ -54,6 +52,20 @@ buildArticleItem(article) => Padding(
     );
 
 myDivider() => Container(height: 1, width: double.infinity, color: Colors.grey);
+
+articleBuilder(cubit) => ConditionalBuilder(
+      condition: cubit.isNotEmpty,
+      builder: (context) => ListView.separated(
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) =>
+            buildArticleItem(cubit[index], context),
+        separatorBuilder: (BuildContext context, int index) => myDivider(),
+        itemCount: cubit.length,
+      ),
+      fallback: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
 
 defaultFormField({
   @required TextEditingController? controller,
