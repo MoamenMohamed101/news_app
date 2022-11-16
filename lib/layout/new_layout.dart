@@ -25,7 +25,9 @@ class NewsLayout extends StatelessWidget {
                   icon: const Icon(Icons.search),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    cubit.changeAppMode();
+                  },
                   icon: const Icon(Icons.brightness_4_outlined),
                 ),
               ],
