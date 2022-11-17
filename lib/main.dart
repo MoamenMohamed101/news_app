@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_app/layout/new_layout.dart';
 import 'package:news_app/shared/cubit/bloc_observer.dart';
-import 'package:news_app/shared/cubit/cubit.dart';
-import 'package:news_app/shared/cubit/states.dart';
+import 'package:news_app/shared/cubit2/cubit.dart';
+import 'package:news_app/shared/cubit2/states.dart';
 import 'package:news_app/shared/network/remote/dio_helper.dart';
 
 main() {
@@ -14,10 +14,10 @@ main() {
   DioHelper.init();
   runApp(
     BlocProvider(
-      create: (BuildContext context) => NewsCubit(),
-      child: BlocConsumer<NewsCubit, NewsStates>(
+      create: (BuildContext context) => AppCubit(),
+      child: BlocConsumer<AppCubit, AppStates>(
         builder: (BuildContext context, state) {
-          var cubit = NewsCubit.get(context);
+          var cubit = AppCubit.get(context);
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
