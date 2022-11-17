@@ -7,14 +7,26 @@ import 'package:news_app/layout/new_layout.dart';
 import 'package:news_app/shared/cubit/bloc_observer.dart';
 import 'package:news_app/shared/cubit2/cubit.dart';
 import 'package:news_app/shared/cubit2/states.dart';
+import 'package:news_app/shared/network/local/cash_helper.dart';
 import 'package:news_app/shared/network/remote/dio_helper.dart';
 
-main() {
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
-  runApp(
-    BlocProvider(
-      create: (BuildContext context) => AppCubit(),
+  await CacheHelper.init();
+  bool? isDark = CacheHelper.getBoolean(key: 'isDark');
+  runApp(MyApp(isDark));
+}
+
+class MyApp extends StatelessWidget {
+  final bool? isDark;
+  MyApp(this.isDark);
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (BuildContext context) =>
+          AppCubit()..changeAppMode(fromShared: isDark),
       child: BlocConsumer<AppCubit, AppStates>(
         builder: (BuildContext context, state) {
           var cubit = AppCubit.get(context);
@@ -84,7 +96,8 @@ main() {
         },
         listener: (BuildContext context, Object? state) {},
       ),
-    ),
-  );
+    );
+  }
 }
+
 // https://newsapi.org/v2/top-headlines?country=eg&category=business&apiKey=65f7f556ec76449fa7dc7c0069f040ca

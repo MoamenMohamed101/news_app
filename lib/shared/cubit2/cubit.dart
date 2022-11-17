@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/shared/cubit2/states.dart';
+import 'package:news_app/shared/network/local/cash_helper.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialStates());
@@ -127,9 +128,15 @@ class AppCubit extends Cubit<AppStates> {
   //   });
   // }
   bool isDark = true;
-  void changeAppMode() {
-    isDark = !isDark;
-    print(isDark);
-    emit(NewsChangeModeState());
+  void changeAppMode({bool? fromShared}) {
+    if (fromShared != null) {
+      isDark = fromShared;
+      emit(NewsChangeModeState());
+    } else {
+      isDark = !isDark;
+      CacheHelper.putBoolean(key: 'isDark', value: isDark).then((value) {
+        emit(NewsChangeModeState());
+      });
+    }
   }
 }
