@@ -15,18 +15,23 @@ main() async {
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
+  //3-
   bool? isDark = CacheHelper.getBoolean(key: 'isDark');
+  //4-
   runApp(MyApp(isDark));
 }
 
 class MyApp extends StatelessWidget {
+  //5-
   final bool? isDark;
+
   MyApp(this.isDark);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) =>
-          AppCubit()..changeAppMode(fromShared: isDark),
+          AppCubit()..changeAppMode(fromShared: isDark), //6-
       child: BlocConsumer<AppCubit, AppStates>(
         builder: (BuildContext context, state) {
           var cubit = AppCubit.get(context);
@@ -101,3 +106,5 @@ class MyApp extends StatelessWidget {
 }
 
 // https://newsapi.org/v2/top-headlines?country=eg&category=business&apiKey=65f7f556ec76449fa7dc7c0069f040ca
+
+// https://newsapi.org/v2/everything?q=tesla&apiKey=b22ad4fe40e442d3923a5e8c588914cf

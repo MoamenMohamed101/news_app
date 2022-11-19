@@ -115,3 +115,10 @@ defaultFormField({
       onFieldSubmitted: onFieldSubmitted,
       onChanged: onChanged,
     );
+
+navigateTo({context, widget}) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ),
+    );

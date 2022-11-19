@@ -104,4 +104,29 @@ class NewsCubit extends Cubit<NewsStates> {
       );
     });
   }
+
+  List<dynamic> search = [];
+
+  getSearch(value) {
+    emit(NewsGetSearchLoadingStates());
+    DioHelper.getData(url: '/v2/everything', query: {
+      'q': value,
+      'apiKey': 'b22ad4fe40e442d3923a5e8c588914cf',
+      // b22ad4fe40e442d3923a5e8c588914cf
+    })!
+        .then((value) {
+      search = value.data['articles'];
+      print(search);
+      emit(NewsGetSearchSuccessStates());
+    }).catchError((error) {
+      print(
+        error.toString(),
+      );
+      emit(
+        NewsGetSearchErrorStates(
+          error.toString(),
+        ),
+      );
+    });
+  }
 }
