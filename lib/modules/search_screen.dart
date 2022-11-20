@@ -76,7 +76,7 @@ class SearchScreen extends StatelessWidget {
                                   'Empty Dashboard , Please search about something',
                                   style: TextStyle(
                                     color: Colors.grey,
-                                    fontSize: 16,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
