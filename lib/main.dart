@@ -108,3 +108,6 @@ class MyApp extends StatelessWidget {
 // https://newsapi.org/v2/top-headlines?country=eg&category=business&apiKey=65f7f556ec76449fa7dc7c0069f040ca
 
 // https://newsapi.org/v2/everything?q=tesla&apiKey=b22ad4fe40e442d3923a5e8c588914cf
+// flutter.minSdkVersion
+
+//flutter.targetSdkVersion
