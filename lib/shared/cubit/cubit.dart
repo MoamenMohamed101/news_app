@@ -60,8 +60,8 @@ class NewsCubit extends Cubit<NewsStates> {
   getSports() {
     emit(NewsGetSportsLoadingStates());
     DioHelper.getData(url: 'v2/top-headlines', query: {
-      'country': 'eg',
-      'category': 'sports',
+      'country': 'us',
+      'category': 'technology',
       'apiKey': 'b22ad4fe40e442d3923a5e8c588914cf',
       // b22ad4fe40e442d3923a5e8c588914cf
     })!
