@@ -22,7 +22,7 @@ class NewsCubit extends Cubit<NewsStates> {
   List screens = [
     const BusinessScreen(),
     const SportsScreen(),
-    const ScienceScreen()
+    const ScienceScreen(),
   ];
 
   changeBottomNavBar(int index) {
@@ -35,7 +35,7 @@ class NewsCubit extends Cubit<NewsStates> {
   getBusiness() {
     emit(NewsGetBusinessLoadingStates());
     DioHelper.getData(url: 'v2/top-headlines', query: {
-      'country': 'eg',
+      'country': 'us',
       'category': 'business',
       'apiKey': 'b22ad4fe40e442d3923a5e8c588914cf',
       // b22ad4fe40e442d3923a5e8c588914cf
@@ -85,7 +85,7 @@ class NewsCubit extends Cubit<NewsStates> {
   getScience() {
     emit(NewsGetScienceLoadingStates());
     DioHelper.getData(url: 'v2/top-headlines', query: {
-      'country': 'eg',
+      'country': 'us',
       'category': 'science',
       'apiKey': 'b22ad4fe40e442d3923a5e8c588914cf',
       // b22ad4fe40e442d3923a5e8c588914cf

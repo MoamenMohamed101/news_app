@@ -36,7 +36,7 @@ class NewsLayout extends StatelessWidget {
                   icon: const Icon(Icons.brightness_4_outlined),
                 ),
               ],
-              title: const Text('News app'),
+              title: const Text('World News'),
             ),
             bottomNavigationBar: BottomNavigationBar(
               items: cubit.bottomItem,
